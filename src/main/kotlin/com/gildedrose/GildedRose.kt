@@ -3,59 +3,58 @@ package com.gildedrose
 class GildedRose(var items: Array<Item>) {
     fun updateQuality() {
         for (i in items.indices) {
-            updateQuality(items[i])
+            items[i].updateQuality()
         }
     }
 
-    private fun updateQuality(item: Item) {
-        if (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") {
-            if (item.quality > 0) {
-                if (item.name != "Sulfuras, Hand of Ragnaros") {
-                    item.quality = item.quality - 1
+    private fun Item.updateQuality() {
+        if (name != "Aged Brie" && name != "Backstage passes to a TAFKAL80ETC concert") {
+            if (quality > 0) {
+                if (name != "Sulfuras, Hand of Ragnaros") {
+                    quality -= 1
                 }
             }
         } else {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1
+            if (quality < 50) {
+                quality += 1
 
-                if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
-                    if (item.sellIn < 11) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1
+                if (name == "Backstage passes to a TAFKAL80ETC concert") {
+                    if (sellIn < 11) {
+                        if (quality < 50) {
+                            quality += 1
                         }
                     }
 
-                    if (item.sellIn < 6) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1
+                    if (sellIn < 6) {
+                        if (quality < 50) {
+                            quality += 1
                         }
                     }
                 }
             }
         }
 
-        if (item.name != "Sulfuras, Hand of Ragnaros") {
-            item.sellIn = item.sellIn - 1
+        if (name != "Sulfuras, Hand of Ragnaros") {
+            sellIn -= 1
         }
 
-        if (item.sellIn < 0) {
-            if (item.name != "Aged Brie") {
-                if (item.name != "Backstage passes to a TAFKAL80ETC concert") {
-                    if (item.quality > 0) {
-                        if (item.name != "Sulfuras, Hand of Ragnaros") {
-                            item.quality = item.quality - 1
+        if (sellIn < 0) {
+            if (name != "Aged Brie") {
+                if (name != "Backstage passes to a TAFKAL80ETC concert") {
+                    if (quality > 0) {
+                        if (name != "Sulfuras, Hand of Ragnaros") {
+                            quality -= 1
                         }
                     }
                 } else {
-                    item.quality = 0
+                    quality = 0
                 }
             } else {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1
+                if (quality < 50) {
+                    quality += 1
                 }
             }
         }
     }
-
 }
 
