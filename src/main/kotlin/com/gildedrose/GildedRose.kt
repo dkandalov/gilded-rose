@@ -13,27 +13,19 @@ private fun Item.update() {
 
     updateQuality(
         when (name) {
-            "Aged Brie"                                 -> 1
+            "Aged Brie"                                 -> if (expired) 2 else 1
             "Backstage passes to a TAFKAL80ETC concert" ->
-                if (sellIn < 5) 3
+                if (expired) -quality
+                else if (sellIn < 5) 3
                 else if (sellIn < 10) 2
                 else 1
             "Sulfuras, Hand of Ragnaros"                -> 0
-            else                                        -> -1
+            else                                        -> if (expired) -2 else -1
         }
     )
-
-    if (sellIn < 0) {
-        updateQuality(
-            when (name) {
-                "Aged Brie"                                 -> 1
-                "Backstage passes to a TAFKAL80ETC concert" -> -quality
-                "Sulfuras, Hand of Ragnaros"                -> 0
-                else                                        -> -1
-            }
-        )
-    }
 }
+
+private val Item.expired get() = sellIn < 0
 
 private fun Item.updateQuality(qualityChange: Int) {
     if (qualityChange == 0) return
