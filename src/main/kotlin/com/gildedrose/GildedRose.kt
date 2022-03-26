@@ -10,7 +10,7 @@ class GildedRose(val items: Array<Item>) {
 
 private fun Item.update() {
     when (name) {
-        "Aged Brie"                                 -> if (quality < 50) quality += 1
+        "Aged Brie"                                 -> updateQuality(1)
         "Backstage passes to a TAFKAL80ETC concert" -> {
             if (quality < 50) {
                 quality += 1
@@ -26,11 +26,15 @@ private fun Item.update() {
 
     if (sellIn < 0) {
         when (name) {
-            "Aged Brie"                                 -> if (quality < 50) quality += 1
+            "Aged Brie"                                 -> updateQuality(1)
             "Backstage passes to a TAFKAL80ETC concert" -> quality = 0
             "Sulfuras, Hand of Ragnaros"                -> quality -= 0
             else                                        -> if (quality > 0) quality -= 1
         }
     }
+}
+
+private fun Item.updateQuality(qualityChange: Int) {
+    quality = (quality + qualityChange).coerceIn(minimumValue = 0, maximumValue = 50)
 }
 
