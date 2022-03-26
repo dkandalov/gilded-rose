@@ -17,7 +17,6 @@ class GildedRoseRegression {
             // this conjured item does not work properly yet
             Item(name = "Conjured Mana Cake", sellIn = 3, quality = 6)
         )
-
         val gildedRose = GildedRose(items)
 
         log("OMGHAI!")
@@ -38,7 +37,6 @@ class GildedRoseRegression {
 
     private fun log(message: String) {
         output += "$message\n"
-        println(message)
     }
 
     private val expectedOutput = """
