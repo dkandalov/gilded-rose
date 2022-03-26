@@ -3,17 +3,12 @@ package com.gildedrose
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class GildedRoseTest {
-
+class GildedRoseTest {
     @Test
-    fun foo() {
-        val items = arrayOf<Item>(Item("foo", 0, 0))
-        val app = GildedRose(items)
-        app.updateQuality()
-        assertEquals("fixme", app.items[0].name)
-
+    fun `item name doesn't change`() {
+        val gildedRose = GildedRose(items = arrayOf(Item("foo", 0, 0)))
+        gildedRose.updateQuality()
+        assertEquals("foo", gildedRose.items[0].name)
     }
-
 }
-
 
