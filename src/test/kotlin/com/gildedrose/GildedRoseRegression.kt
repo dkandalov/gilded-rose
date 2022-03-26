@@ -5,29 +5,26 @@ import org.junit.jupiter.api.Test
 
 class GildedRoseRegression {
     @Test fun `update items over 100 days`() {
-        log("OMGHAI!")
-
         val items = arrayOf(
-            Item("+5 Dexterity Vest", 10, 20),
-            Item("Aged Brie", 2, 0),
-            Item("Elixir of the Mongoose", 5, 7),
-            Item("Sulfuras, Hand of Ragnaros", 0, 80),
-            Item("Sulfuras, Hand of Ragnaros", -1, 80),
-            Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-            Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-            Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+            Item(name = "+5 Dexterity Vest", sellIn = 10, quality = 20),
+            Item(name = "Aged Brie", sellIn = 2, quality = 0),
+            Item(name = "Elixir of the Mongoose", sellIn = 5, quality = 7),
+            Item(name = "Sulfuras, Hand of Ragnaros", sellIn = 0, quality = 80),
+            Item(name = "Sulfuras, Hand of Ragnaros", sellIn = -1, quality = 80),
+            Item(name = "Backstage passes to a TAFKAL80ETC concert", sellIn = 15, quality = 20),
+            Item(name = "Backstage passes to a TAFKAL80ETC concert", sellIn = 10, quality = 49),
+            Item(name = "Backstage passes to a TAFKAL80ETC concert", sellIn = 5, quality = 49),
             // this conjured item does not work properly yet
-            Item("Conjured Mana Cake", 3, 6)
+            Item(name = "Conjured Mana Cake", sellIn = 3, quality = 6)
         )
 
         val gildedRose = GildedRose(items)
 
-        val days = 100
-
-        for (i in 0 until days) {
-            log("-------- day $i --------")
+        log("OMGHAI!")
+        (0 until 100).forEach { day ->
+            log("-------- day $day --------")
             log("name, sellIn, quality")
-            for (item in items) {
+            items.forEach { item ->
                 log(item.toString())
             }
             log("")
