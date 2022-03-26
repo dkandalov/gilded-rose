@@ -22,7 +22,7 @@ private fun Item.updateQuality() {
         else                                        -> if (quality > 0) quality -= 1
     }
 
-    if (name != "Sulfuras, Hand of Ragnaros") sellIn -= 1
+    sellIn -= if (name == "Sulfuras, Hand of Ragnaros") 0 else 1
 
     if (sellIn < 0) {
         when (name) {
