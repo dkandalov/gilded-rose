@@ -9,8 +9,11 @@ class GildedRose(val items: Array<Item>) {
 }
 
 private fun Item.update() {
-    sellIn -= if (name == "Sulfuras, Hand of Ragnaros") 0 else 1
+    updateSellIn()
+    updateQuality()
+}
 
+private fun Item.updateQuality() {
     val qualityChange = when (name) {
         "Aged Brie"                                 -> if (expired) 2 else 1
         "Backstage passes to a TAFKAL80ETC concert" ->
@@ -24,6 +27,10 @@ private fun Item.update() {
     if (qualityChange != 0) {
         quality = (quality + qualityChange).coerceIn(minimumValue = 0, maximumValue = 50)
     }
+}
+
+private fun Item.updateSellIn() {
+    sellIn -= if (name == "Sulfuras, Hand of Ragnaros") 0 else 1
 }
 
 private val Item.expired get() = sellIn < 0
