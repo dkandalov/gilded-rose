@@ -1,9 +1,9 @@
 package com.gildedrose
 
-class GildedRose(var items: Array<Item>) {
+class GildedRose(val items: Array<Item>) {
     fun updateQuality() {
-        for (i in items.indices) {
-            items[i].updateQuality()
+        items.forEach {
+            it.updateQuality()
         }
     }
 }
