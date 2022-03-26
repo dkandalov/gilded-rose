@@ -9,19 +9,19 @@ class GildedRose(val items: Array<Item>) {
 }
 
 private fun Item.update() {
+    sellIn -= if (name == "Sulfuras, Hand of Ragnaros") 0 else 1
+
     updateQuality(
         when (name) {
             "Aged Brie"                                 -> 1
             "Backstage passes to a TAFKAL80ETC concert" ->
-                if (sellIn < 6) 3
-                else if (sellIn < 11) 2
+                if (sellIn < 5) 3
+                else if (sellIn < 10) 2
                 else 1
             "Sulfuras, Hand of Ragnaros"                -> 0
             else                                        -> -1
         }
     )
-
-    sellIn -= if (name == "Sulfuras, Hand of Ragnaros") 0 else 1
 
     if (sellIn < 0) {
         updateQuality(
