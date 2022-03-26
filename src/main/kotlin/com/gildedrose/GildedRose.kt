@@ -1,14 +1,14 @@
 package com.gildedrose
 
 class GildedRose(val items: Array<Item>) {
-    fun updateQuality() {
+    fun update() {
         items.forEach {
-            it.updateQuality()
+            it.update()
         }
     }
 }
 
-private fun Item.updateQuality() {
+private fun Item.update() {
     when (name) {
         "Aged Brie"                                 -> if (quality < 50) quality += 1
         "Backstage passes to a TAFKAL80ETC concert" -> {
