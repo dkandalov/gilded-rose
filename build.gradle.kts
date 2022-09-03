@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	kotlin("jvm") version "1.6.10"
+	kotlin("jvm") version "1.7.10"
 }
 
 group = "com.gildedrose"
@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
 	implementation(kotlin("stdlib"))
-	testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
 }
 
 tasks.test {
@@ -23,7 +23,6 @@ tasks.test {
 	}
 }
 
-// config JVM target to 1.8 for kotlin compilation tasks
 tasks.withType<KotlinCompile>().configureEach {
-	kotlinOptions.jvmTarget = "1.8"
+	kotlinOptions.jvmTarget = "11"
 }
