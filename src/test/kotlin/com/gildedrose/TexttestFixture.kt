@@ -30,7 +30,7 @@ class GildedRoseRegression {
                 log(item)
             }
             log("")
-            app.updateQuality()
+            app.update()
         }
 
         assertEquals(expectedOutput, output)
