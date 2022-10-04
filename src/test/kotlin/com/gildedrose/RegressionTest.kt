@@ -3,7 +3,7 @@ package com.gildedrose
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class Regresstion {
+class RegressionTest {
     @Test fun `100 days of updates`() {
         log("OMGHAI!")
 
