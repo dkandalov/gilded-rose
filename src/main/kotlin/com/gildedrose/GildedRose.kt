@@ -28,9 +28,13 @@ private fun Item.update1() {
         "Sulfuras, Hand of Ragnaros" -> {
         }
         else -> {
-            if (quality > 0) quality = quality - 1
+            decrementQuality()
         }
     }
+}
+
+private fun Item.decrementQuality() {
+    if (quality > 0) quality = quality - 1
 }
 
 private fun Item.incrementQuality() {
@@ -49,9 +53,7 @@ private fun Item.update2() {
 private fun Item.update3() {
     if (sellIn < 0) {
         if (name == "Aged Brie") {
-            if (quality < 50) {
-                quality = quality + 1
-            }
+            incrementQuality()
         } else {
             if (name == "Backstage passes to a TAFKAL80ETC concert") {
                 quality = 0
