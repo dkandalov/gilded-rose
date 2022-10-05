@@ -25,6 +25,11 @@ enum class ItemType {
     Brie, Pass, Sulfuras, Normal;
 
     fun update(item: Item) {
+        age(item)
+        degrade(item)
+    }
+
+    private fun age(item: Item) {
         when (this) {
             Sulfuras -> {
             }
@@ -32,7 +37,9 @@ enum class ItemType {
                 item.sellIn = item.sellIn - 1
             }
         }
+    }
 
+    private fun degrade(item: Item) {
         when (this) {
             Brie -> {
                 item.setQuality(
