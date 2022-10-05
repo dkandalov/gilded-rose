@@ -10,12 +10,6 @@ class GildedRose(var items: Array<Item>) {
 }
 
 private fun Item.update() {
-    update1()
-    age()
-    update2()
-}
-
-private fun Item.update1() {
     when (name) {
         "Aged Brie" -> {
             incrementQuality()
@@ -31,26 +25,12 @@ private fun Item.update1() {
             decrementQuality()
         }
     }
-}
 
-private fun Item.decrementQuality() {
-    if (quality > 0) quality = quality - 1
-}
-
-private fun Item.incrementQuality() {
-    if (quality < 50) {
-        quality = quality + 1
-    }
-}
-
-private fun Item.age() {
     if (name == "Sulfuras, Hand of Ragnaros") {
     } else {
         sellIn = sellIn - 1
     }
-}
 
-private fun Item.update2() {
     if (sellIn < 0) {
         when (name) {
             "Aged Brie" -> {
@@ -68,3 +48,13 @@ private fun Item.update2() {
     }
 }
 
+
+private fun Item.decrementQuality() {
+    if (quality > 0) quality = quality - 1
+}
+
+private fun Item.incrementQuality() {
+    if (quality < 50) {
+        quality = quality + 1
+    }
+}
