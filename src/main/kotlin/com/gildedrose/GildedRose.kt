@@ -15,6 +15,7 @@ private val Item.type
         "Aged Brie" -> Brie
         "Backstage passes to a TAFKAL80ETC concert" -> Pass
         "Sulfuras, Hand of Ragnaros" -> Sulfuras
+        "Conjured Mana Cake" -> Conjured
         else -> Normal
     }
 
@@ -41,6 +42,15 @@ object Pass : ItemType() {
 object Sulfuras : ItemType() {
     override fun age(item: Item) = Unit
     override fun degrade(item: Item) = Unit
+}
+
+object Conjured : ItemType() {
+    override fun degrade(item: Item) {
+        item.setQuality(
+            if (item.sellIn < 0) item.quality - 4
+            else item.quality - 2
+        )
+    }
 }
 
 object Normal : ItemType()
