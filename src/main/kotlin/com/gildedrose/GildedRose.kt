@@ -1,9 +1,5 @@
 package com.gildedrose
 
-import com.gildedrose.ItemType.Brie
-import com.gildedrose.ItemType.Normal
-import com.gildedrose.ItemType.Pass
-import com.gildedrose.ItemType.Sulfuras
 
 class GildedRose(var items: Array<Item>) {
 
@@ -21,8 +17,12 @@ private val Item.type get() = when (name) {
     else -> Normal
 }
 
-enum class ItemType {
-    Brie, Pass, Sulfuras, Normal;
+object Brie : ItemType()
+object Pass : ItemType()
+object Sulfuras : ItemType()
+object Normal : ItemType()
+
+open class ItemType {
 
     fun update(item: Item) {
         age(item)
@@ -52,7 +52,7 @@ enum class ItemType {
                 else item.quality + 1
             )
             Sulfuras -> Unit
-            else -> item.setQuality(
+            Normal -> item.setQuality(
                 if (item.sellIn < 0) item.quality - 2
                 else item.quality - 1
             )
