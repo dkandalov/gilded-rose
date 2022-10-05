@@ -17,9 +17,28 @@ private val Item.type get() = when (name) {
     else -> Normal
 }
 
-object Brie : ItemType()
-object Pass : ItemType()
-object Sulfuras : ItemType()
+object Brie : ItemType() {
+    override fun degrade(item: Item) {
+        item.setQuality(
+            if (item.sellIn < 0) item.quality + 2
+            else item.quality + 1
+        )
+    }
+}
+object Pass : ItemType() {
+    override fun degrade(item: Item) {
+        item.setQuality(
+            if (item.sellIn < 0) 0
+            else if (item.sellIn < 5) item.quality + 3
+            else if (item.sellIn < 10) item.quality + 2
+            else item.quality + 1
+        )
+    }
+}
+object Sulfuras : ItemType() {
+    override fun age(item: Item) = Unit
+    override fun degrade(item: Item) = Unit
+}
 object Normal : ItemType()
 
 open class ItemType {
@@ -29,34 +48,15 @@ open class ItemType {
         degrade(item)
     }
 
-    private fun age(item: Item) {
-        when (this) {
-            Sulfuras -> {
-            }
-            else -> {
-                item.sellIn = item.sellIn - 1
-            }
-        }
+    protected open fun age(item: Item) {
+        item.sellIn = item.sellIn - 1
     }
 
-    private fun degrade(item: Item) {
-        when (this) {
-            Brie -> item.setQuality(
-                if (item.sellIn < 0) item.quality + 2
-                else item.quality + 1
-            )
-            Pass -> item.setQuality(
-                if (item.sellIn < 0) 0
-                else if (item.sellIn < 5) item.quality + 3
-                else if (item.sellIn < 10) item.quality + 2
-                else item.quality + 1
-            )
-            Sulfuras -> Unit
-            Normal -> item.setQuality(
-                if (item.sellIn < 0) item.quality - 2
-                else item.quality - 1
-            )
-        }
+    protected open fun degrade(item: Item) {
+        item.setQuality(
+            if (item.sellIn < 0) item.quality - 2
+            else item.quality - 1
+        )
     }
 }
 
