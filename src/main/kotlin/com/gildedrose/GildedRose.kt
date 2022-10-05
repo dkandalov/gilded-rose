@@ -35,12 +35,11 @@ private fun Item.update1() {
                 }
             }
         }
+    } else if (name == "Sulfuras, Hand of Ragnaros") {
+
     } else {
         if (quality > 0) {
-            if (name == "Sulfuras, Hand of Ragnaros") {
-            } else {
-                quality = quality - 1
-            }
+            quality = quality - 1
         }
     }
 }
