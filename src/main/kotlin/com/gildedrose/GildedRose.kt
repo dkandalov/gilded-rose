@@ -10,25 +10,25 @@ class GildedRose(var items: Array<Item>) {
 }
 
 private fun Item.update() {
+    if (name == "Sulfuras, Hand of Ragnaros") {
+    } else {
+        sellIn = sellIn - 1
+    }
+
     when (name) {
         "Aged Brie" -> {
             incrementQuality()
         }
         "Backstage passes to a TAFKAL80ETC concert" -> {
             incrementQuality()
-            if (sellIn < 11) incrementQuality()
-            if (sellIn < 6) incrementQuality()
+            if (sellIn < 10) incrementQuality()
+            if (sellIn < 5) incrementQuality()
         }
         "Sulfuras, Hand of Ragnaros" -> {
         }
         else -> {
             decrementQuality()
         }
-    }
-
-    if (name == "Sulfuras, Hand of Ragnaros") {
-    } else {
-        sellIn = sellIn - 1
     }
 
     if (sellIn < 0) {
