@@ -14,41 +14,6 @@ class GildedRose(var items: Array<Item>) {
     }
 }
 
-private fun ItemType.update(item: Item) {
-    when (this) {
-        Sulfuras -> {
-        }
-        else -> {
-            item.sellIn = item.sellIn - 1
-        }
-    }
-
-    when (this) {
-        Brie -> {
-            item.setQuality(
-                if (item.sellIn < 0) item.quality + 2
-                else item.quality + 1
-            )
-        }
-        Pass -> {
-            item.setQuality(
-                if (item.sellIn < 0) 0
-                else if (item.sellIn < 5) item.quality + 3
-                else if (item.sellIn < 10) item.quality + 2
-                else item.quality + 1
-            )
-        }
-        Sulfuras -> {
-        }
-        else -> {
-            item.setQuality(
-                if (item.sellIn < 0) item.quality - 2
-                else item.quality - 1
-            )
-        }
-    }
-}
-
 private val Item.type get() = when (name) {
     "Aged Brie" -> Brie
     "Backstage passes to a TAFKAL80ETC concert" -> Pass
@@ -57,7 +22,42 @@ private val Item.type get() = when (name) {
 }
 
 enum class ItemType {
-    Brie, Pass, Sulfuras, Normal
+    Brie, Pass, Sulfuras, Normal;
+
+    fun update(item: Item) {
+        when (this) {
+            Sulfuras -> {
+            }
+            else -> {
+                item.sellIn = item.sellIn - 1
+            }
+        }
+
+        when (this) {
+            Brie -> {
+                item.setQuality(
+                    if (item.sellIn < 0) item.quality + 2
+                    else item.quality + 1
+                )
+            }
+            Pass -> {
+                item.setQuality(
+                    if (item.sellIn < 0) 0
+                    else if (item.sellIn < 5) item.quality + 3
+                    else if (item.sellIn < 10) item.quality + 2
+                    else item.quality + 1
+                )
+            }
+            Sulfuras -> {
+            }
+            else -> {
+                item.setQuality(
+                    if (item.sellIn < 0) item.quality - 2
+                    else item.quality - 1
+                )
+            }
+        }
+    }
 }
 
 private fun Item.setQuality(newQuality: Int) {
