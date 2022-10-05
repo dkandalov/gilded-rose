@@ -37,11 +37,9 @@ private fun Item.update() {
 
 
 private fun Item.decrementQuality() {
-    if (quality > 0) quality = quality - 1
+    quality = (quality - 1).coerceAtLeast(0)
 }
 
 private fun Item.incrementQuality() {
-    if (quality < 50) {
-        quality = quality + 1
-    }
+    quality = (quality + 1).coerceAtMost(50)
 }
