@@ -9,41 +9,41 @@ class GildedRose(var items: Array<Item>) {
 
     fun updateQuality() {
         for (item in items) {
-            item.update()
+            item.type.update(item)
         }
     }
 }
 
-private fun Item.update() {
-    when (type) {
+private fun ItemType.update(item: Item) {
+    when (this) {
         Sulfuras -> {
         }
         else -> {
-            sellIn = sellIn - 1
+            item.sellIn = item.sellIn - 1
         }
     }
 
-    when (type) {
+    when (this) {
         Brie -> {
-            setQuality(
-                if (sellIn < 0) quality + 2
-                else quality + 1
+            item.setQuality(
+                if (item.sellIn < 0) item.quality + 2
+                else item.quality + 1
             )
         }
         Pass -> {
-            setQuality(
-                if (sellIn < 0) 0
-                else if (sellIn < 5) quality + 3
-                else if (sellIn < 10) quality + 2
-                else quality + 1
+            item.setQuality(
+                if (item.sellIn < 0) 0
+                else if (item.sellIn < 5) item.quality + 3
+                else if (item.sellIn < 10) item.quality + 2
+                else item.quality + 1
             )
         }
         Sulfuras -> {
         }
         else -> {
-            setQuality(
-                if (sellIn < 0) quality - 2
-                else quality - 1
+            item.setQuality(
+                if (item.sellIn < 0) item.quality - 2
+                else item.quality - 1
             )
         }
     }
