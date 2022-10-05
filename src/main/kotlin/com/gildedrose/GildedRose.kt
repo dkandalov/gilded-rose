@@ -15,36 +15,44 @@ class GildedRose(var items: Array<Item>) {
 }
 
 private fun Item.update() {
-    if (type == Sulfuras) {
-    } else {
-        sellIn = sellIn - 1
+    when (type) {
+        Sulfuras -> {
+        }
+        else -> {
+            sellIn = sellIn - 1
+        }
     }
 
-    if (type == Brie) {
-        setQuality(
-            if (sellIn < 0) quality + 2
-            else quality + 1
-        )
-    } else if (type == Pass) {
-        setQuality(
-            if (sellIn < 0) 0
-            else if (sellIn < 5) quality + 3
-            else if (sellIn < 10) quality + 2
-            else quality + 1
-        )
-    } else if (type == Sulfuras) {
-    } else {
-        setQuality(
-            if (sellIn < 0) quality - 2
-            else quality - 1
-        )
+    when (type) {
+        Brie -> {
+            setQuality(
+                if (sellIn < 0) quality + 2
+                else quality + 1
+            )
+        }
+        Pass -> {
+            setQuality(
+                if (sellIn < 0) 0
+                else if (sellIn < 5) quality + 3
+                else if (sellIn < 10) quality + 2
+                else quality + 1
+            )
+        }
+        Sulfuras -> {
+        }
+        else -> {
+            setQuality(
+                if (sellIn < 0) quality - 2
+                else quality - 1
+            )
+        }
     }
 }
 
-private val Item.type get() = when {
-    name == "Aged Brie" -> Brie
-    name == "Backstage passes to a TAFKAL80ETC concert" -> Pass
-    name == "Sulfuras, Hand of Ragnaros" -> Sulfuras
+private val Item.type get() = when (name) {
+    "Aged Brie" -> Brie
+    "Backstage passes to a TAFKAL80ETC concert" -> Pass
+    "Sulfuras, Hand of Ragnaros" -> Sulfuras
     else -> Normal
 }
 
