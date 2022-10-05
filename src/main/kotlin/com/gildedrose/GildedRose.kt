@@ -41,28 +41,21 @@ enum class ItemType {
 
     private fun degrade(item: Item) {
         when (this) {
-            Brie -> {
-                item.setQuality(
-                    if (item.sellIn < 0) item.quality + 2
-                    else item.quality + 1
-                )
-            }
-            Pass -> {
-                item.setQuality(
-                    if (item.sellIn < 0) 0
-                    else if (item.sellIn < 5) item.quality + 3
-                    else if (item.sellIn < 10) item.quality + 2
-                    else item.quality + 1
-                )
-            }
-            Sulfuras -> {
-            }
-            else -> {
-                item.setQuality(
-                    if (item.sellIn < 0) item.quality - 2
-                    else item.quality - 1
-                )
-            }
+            Brie -> item.setQuality(
+                if (item.sellIn < 0) item.quality + 2
+                else item.quality + 1
+            )
+            Pass -> item.setQuality(
+                if (item.sellIn < 0) 0
+                else if (item.sellIn < 5) item.quality + 3
+                else if (item.sellIn < 10) item.quality + 2
+                else item.quality + 1
+            )
+            Sulfuras -> Unit
+            else -> item.setQuality(
+                if (item.sellIn < 0) item.quality - 2
+                else item.quality - 1
+            )
         }
     }
 }
