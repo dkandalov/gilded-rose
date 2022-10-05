@@ -10,12 +10,13 @@ class GildedRose(var items: Array<Item>) {
     }
 }
 
-private val Item.type get() = when (name) {
-    "Aged Brie" -> Brie
-    "Backstage passes to a TAFKAL80ETC concert" -> Pass
-    "Sulfuras, Hand of Ragnaros" -> Sulfuras
-    else -> Normal
-}
+private val Item.type
+    get() = when (name) {
+        "Aged Brie" -> Brie
+        "Backstage passes to a TAFKAL80ETC concert" -> Pass
+        "Sulfuras, Hand of Ragnaros" -> Sulfuras
+        else -> Normal
+    }
 
 object Brie : ItemType() {
     override fun degrade(item: Item) {
@@ -25,6 +26,7 @@ object Brie : ItemType() {
         )
     }
 }
+
 object Pass : ItemType() {
     override fun degrade(item: Item) {
         item.setQuality(
@@ -35,10 +37,12 @@ object Pass : ItemType() {
         )
     }
 }
+
 object Sulfuras : ItemType() {
     override fun age(item: Item) = Unit
     override fun degrade(item: Item) = Unit
 }
+
 object Normal : ItemType()
 
 open class ItemType {
