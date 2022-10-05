@@ -17,29 +17,24 @@ private fun Item.update() {
 
     when (name) {
         "Aged Brie" -> {
-            incrementQuality()
-            if (sellIn < 0) incrementQuality()
+            setQuality(quality + 1)
+            if (sellIn < 0) setQuality(quality + 1)
         }
         "Backstage passes to a TAFKAL80ETC concert" -> {
-            incrementQuality()
-            if (sellIn < 10) incrementQuality()
-            if (sellIn < 5) incrementQuality()
+            setQuality(quality + 1)
+            if (sellIn < 10) setQuality(quality + 1)
+            if (sellIn < 5) setQuality(quality + 1)
             if (sellIn < 0) quality = 0
         }
         "Sulfuras, Hand of Ragnaros" -> {
         }
         else -> {
-            decrementQuality()
-            if (sellIn < 0) decrementQuality()
+            setQuality(quality - 1)
+            if (sellIn < 0) setQuality(quality - 1)
         }
     }
 }
 
-
-private fun Item.decrementQuality() {
-    quality = (quality - 1).coerceIn(0, 50)
-}
-
-private fun Item.incrementQuality() {
-    quality = (quality + 1).coerceIn(0, 50)
+private fun Item.setQuality(newQuality: Int) {
+    quality = newQuality.coerceIn(0, 50)
 }
