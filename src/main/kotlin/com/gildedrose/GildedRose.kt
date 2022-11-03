@@ -9,21 +9,21 @@ class GildedRose(var items: Array<Item>) {
 }
 
 private fun Item.update() {
-    if (name != "Aged Brie" && name != "Backstage passes to a TAFKAL80ETC concert") {
-        if (quality > 0) {
-            if (name != "Sulfuras, Hand of Ragnaros") quality -= 1
-        }
-    } else {
+    if (name == "Aged Brie") {
+        if (quality < 50) quality += 1
+    } else if (name == "Backstage passes to a TAFKAL80ETC concert") {
         if (quality < 50) {
             quality += 1
-            if (name == "Backstage passes to a TAFKAL80ETC concert") {
-                if (sellIn < 11) {
-                    if (quality < 50) quality += 1
-                }
-                if (sellIn < 6) {
-                    if (quality < 50) quality += 1
-                }
+            if (sellIn < 11) {
+                if (quality < 50) quality += 1
             }
+            if (sellIn < 6) {
+                if (quality < 50) quality += 1
+            }
+        }
+    } else {
+        if (quality > 0) {
+            if (name != "Sulfuras, Hand of Ragnaros") quality -= 1
         }
     }
 
