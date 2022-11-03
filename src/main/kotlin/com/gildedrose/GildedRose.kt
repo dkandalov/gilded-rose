@@ -2,25 +2,20 @@ package com.gildedrose
 
 class GildedRose(var items: Array<Item>) {
     fun update() {
-        items.forEach { item ->
-            item.update()
-        }
+        items = items.map { item -> item.update() }.toTypedArray()
     }
 }
 
-private fun Item.update() {
-    updateSellIn()
-    updateQuality()
-}
+private fun Item.update() =
+    updateSellIn().updateQuality()
 
-private fun Item.updateSellIn() {
-    sellIn -= when (name) {
+private fun Item.updateSellIn() =
+    copy(sellIn = sellIn - when (name) {
         "Sulfuras, Hand of Ragnaros" -> 0
         else -> 1
-    }
-}
+    })
 
-private fun Item.updateQuality() {
+private fun Item.updateQuality(): Item {
     val change = when (name) {
         "Aged Brie" -> if (sellIn < 0) 2 else 1
         "Backstage passes to a TAFKAL80ETC concert" ->
@@ -33,7 +28,6 @@ private fun Item.updateQuality() {
         "Sulfuras, Hand of Ragnaros" -> 0
         else -> if (sellIn < 0) -2 else -1
     }
-    if (change != 0) {
-        quality = (quality + change).coerceIn(0, 50)
-    }
+    return if (change == 0) this
+    else copy(quality = (quality + change).coerceIn(0, 50))
 }
