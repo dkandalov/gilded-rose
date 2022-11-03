@@ -21,10 +21,10 @@ private fun Item.update() {
                 if (quality < 50) quality += 1
             }
         }
+    } else if (name == "Sulfuras, Hand of Ragnaros") {
+        quality -= 0
     } else {
-        if (quality > 0) {
-            if (name != "Sulfuras, Hand of Ragnaros") quality -= 1
-        }
+        if (quality > 0) quality -= 1
     }
 
     sellIn -= when (name) {
