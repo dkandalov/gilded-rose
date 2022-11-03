@@ -9,11 +9,18 @@ class GildedRose(var items: Array<Item>) {
 }
 
 private fun Item.update() {
+    updateSellIn()
+    updateQuality()
+}
+
+private fun Item.updateSellIn() {
     sellIn -= when (name) {
         "Sulfuras, Hand of Ragnaros" -> 0
         else -> 1
     }
+}
 
+private fun Item.updateQuality() {
     val change = when (name) {
         "Aged Brie" -> if (sellIn < 0) 2 else 1
         "Backstage passes to a TAFKAL80ETC concert" ->
