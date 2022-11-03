@@ -1,7 +1,7 @@
 package com.gildedrose
 
-open class Item(
-    var name: String,
+data class Item(
+    val name: String,
     var sellIn: Int,
     var quality: Int
 ) {
