@@ -1,7 +1,7 @@
 package com.gildedrose
 
 class GildedRose(var items: Array<Item>) {
-    fun updateQuality() {
+    fun update() {
         items.forEach { item ->
             item.update()
         }
