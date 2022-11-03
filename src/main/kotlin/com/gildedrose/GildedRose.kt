@@ -32,12 +32,14 @@ private fun Item.update() {
     }
 
     if (sellIn < 0) {
-        when (name) {
-            "Aged Brie" -> updateQuality(1)
-            "Backstage passes to a TAFKAL80ETC concert" -> updateQuality(-quality)
-            "Sulfuras, Hand of Ragnaros" -> updateQuality(0)
-            else -> updateQuality(-1)
-        }
+        updateQuality(
+            when (name) {
+                "Aged Brie" -> 1
+                "Backstage passes to a TAFKAL80ETC concert" -> -quality
+                "Sulfuras, Hand of Ragnaros" -> 0
+                else -> -1
+            }
+        )
     }
 }
 
