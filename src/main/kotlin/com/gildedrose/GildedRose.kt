@@ -14,24 +14,19 @@ private fun Item.update() {
         else -> 1
     }
 
-    updateQuality(
-        when (name) {
-            "Aged Brie" -> if (sellIn < 0) 2 else 1
-            "Backstage passes to a TAFKAL80ETC concert" ->
-                if (sellIn < 0) -quality
-                else when {
-                    sellIn < 5 -> 3
-                    sellIn < 10 -> 2
-                    else -> 1
-                }
-            "Sulfuras, Hand of Ragnaros" -> 0
-            else -> if (sellIn < 0) -2 else -1
-        }
-    )
+    val change = when (name) {
+        "Aged Brie" -> if (sellIn < 0) 2 else 1
+        "Backstage passes to a TAFKAL80ETC concert" ->
+            if (sellIn < 0) -quality
+            else when {
+                sellIn < 5 -> 3
+                sellIn < 10 -> 2
+                else -> 1
+            }
+        "Sulfuras, Hand of Ragnaros" -> 0
+        else -> if (sellIn < 0) -2 else -1
+    }
+    if (change != 0) {
+        quality = (quality + change).coerceIn(0, 50)
+    }
 }
-
-private fun Item.updateQuality(change: Int) {
-    if (change == 0) return
-    quality = (quality + change).coerceIn(0, 50)
-}
-
