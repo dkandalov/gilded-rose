@@ -27,7 +27,10 @@ private fun Item.update() {
         }
     }
 
-    if (name != "Sulfuras, Hand of Ragnaros") sellIn -= 1
+    sellIn -= when (name) {
+        "Sulfuras, Hand of Ragnaros" -> 0
+        else -> 1
+    }
 
     if (sellIn < 0) {
         when (name) {
