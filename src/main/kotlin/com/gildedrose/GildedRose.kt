@@ -11,18 +11,18 @@ class GildedRose(var items: Array<Item>) {
 private fun Item.update() {
     when (name) {
         "Aged Brie" -> {
-            updateQuality()
+            updateQuality(1)
         }
         "Backstage passes to a TAFKAL80ETC concert" -> {
-            updateQuality()
-            if (sellIn < 11) updateQuality()
-            if (sellIn < 6) updateQuality()
+            updateQuality(1)
+            if (sellIn < 11) updateQuality(1)
+            if (sellIn < 6) updateQuality(1)
         }
         "Sulfuras, Hand of Ragnaros" -> {
             quality -= 0
         }
         else -> {
-            if (quality > 0) quality -= 1
+            updateQuality(-1)
         }
     }
 
@@ -33,15 +33,15 @@ private fun Item.update() {
 
     if (sellIn < 0) {
         when (name) {
-            "Aged Brie" -> updateQuality()
+            "Aged Brie" -> updateQuality(1)
             "Backstage passes to a TAFKAL80ETC concert" -> quality = 0
             "Sulfuras, Hand of Ragnaros" -> quality -= 0
-            else -> if (quality > 0) quality -= 1
+            else -> updateQuality(-1)
         }
     }
 }
 
-private fun Item.updateQuality() {
-    if (quality < 50) quality += 1
+private fun Item.updateQuality(change: Int) {
+    quality = (quality + change).coerceIn(0, 50)
 }
 
